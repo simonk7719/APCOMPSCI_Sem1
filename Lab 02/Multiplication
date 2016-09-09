@@ -1,0 +1,13 @@
+public class Multiplication
+{
+	public static void main(String[]args)
+	{
+		int l = 8;
+		int w = 5;
+		int value = l * w;
+		
+		System.out.println(l + " multiplied by " + w + " is " + value);
+		
+		
+	}
+}
