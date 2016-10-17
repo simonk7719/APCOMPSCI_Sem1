@@ -5,7 +5,7 @@ public class GPACalculator
 	{
 		Scanner keyboard = new Scanner(System.in);
 		
-	System.out.println("What letter grade did you get in math?");
+		System.out.println("What letter grade did you get in math?");
 		double math = GPA(keyboard.next());
 		System.out.println("What letter grade did you get in english?");
 		double english = GPA(keyboard.next());
