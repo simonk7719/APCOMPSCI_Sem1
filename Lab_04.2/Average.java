@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Average
 {
-	public static void main(String[]args)
+	public void main(String[]args)
 	{
 		
 		Scanner kb = new Scanner(System.in);

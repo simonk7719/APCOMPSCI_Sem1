@@ -1,25 +1,32 @@
 import java.util.Scanner;
 public class Average
 {
+	static double num1;
+	static double num2;
+	static double num3;
+	static double s;
+	static double avg
+	
+	
 	public static void main(String[]args)
 	{
 		Average x = new Average();
 		
 		Scanner kb = new Scanner(System.in);
 		System.out.println("Welcome to Average finder! \nWhat is your first number?");
-		double num1 = kb.nextDouble();
+		num1 = kb.nextDouble();
 		System.out.println("What is your second number?");
-		double num2 = kb.nextDouble();
+		num2 = kb.nextDouble();
 		System.out.println("What is your third number?");
-		double num3 = kb.nextDouble();
+		num3 = kb.nextDouble();
 		
 		x.average(num1, num2, num3);
 	}
 
-	public void average(double num1, double num2, double num3)
+	public static void average(num1, num2, num3)
 	{
-		double s = num1 + num2 + num3;
-		double avg = s / 3 ;
+		s = num1 + num2 + num3;
+		avg = s / 3 ;
 		System.out.printf("the average of three numbers is " + "%100000.3f", avg);
 	}
 	
