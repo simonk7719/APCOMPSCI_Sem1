@@ -18,7 +18,7 @@ public class ReverseNumber
 	
 		getReverse();
 		
-		System.out.println("The avg of the digits in " + number + " is " +  rev);
+		System.out.println("The reverse of the digits in " + number + " is " +  rev);
 	}
 	
 	
