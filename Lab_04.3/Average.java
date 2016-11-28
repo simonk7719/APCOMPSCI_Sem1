@@ -5,7 +5,7 @@ public class Average
 	static double num2;
 	static double num3;
 	static double s;
-	static double avg
+	static double avg;
 	
 	
 	public static void main(String[]args)
