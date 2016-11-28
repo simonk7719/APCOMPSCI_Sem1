@@ -19,15 +19,14 @@ public class Average
 		num2 = kb.nextDouble();
 		System.out.println("What is your third number?");
 		num3 = kb.nextDouble();
-		
-		x.average(num1, num2, num3);
+		System.out.printf("the average of three numbers is " + "%100000.3f", x.average(num1, num2, num3));
 	}
 
 	public static void average(num1, num2, num3)
 	{
 		s = num1 + num2 + num3;
 		avg = s / 3 ;
-		System.out.printf("the average of three numbers is " + "%100000.3f", avg);
+		return avg;
 	}
 	
 }

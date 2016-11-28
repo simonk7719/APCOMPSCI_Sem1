@@ -21,16 +21,16 @@ public class Rectangle
 		System.out.println("What is the width of the Rectangle?");
 		w = kb.nextDouble();
 		
-		box.calcperim(h,l,w);
+		System.out.printf("Your Rectangle's perimeter is %.5f ft around.",box.calcperim(h,l,w));
 	}
 
-	public static void calcperim(double h,double l,double w)
+	public static double calcperim(double h,double l,double w)
 	{
 		a = 4 * h ;
 		b = 4 * l ;
 		c = 4 * w ;
 		p = a + b + c;
-		System.out.printf("Your Rectangle's perimeter is %.5f ft around.",p);
+		return p;
 	}
 	
 }
