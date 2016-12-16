@@ -1,37 +1,38 @@
 import java.util.Scanner;
 public class GetOdds
 {
-	static int [] num;
+	static int [] num = new int [10];;
 	public static void main(String[]args)
 	{
-		num = new int [10];
 		fillArray();
-		System.out.println("For the following numbers...");
+		System.out.print("For the following numbers...");
 		printArray();
-		System.out.print("The" + getOdds() + " are odd numbers!");
+		System.out.println("\nThese are the odd numbers:: " + getOdds());
 	}
 		
-	public static double fillArray(int[] num)
+	public static void fillArray()
 	{
-		for (int i = 0; i <= num.length();i++)
+		for (int i = 0; i < num.length;i++)
 		{
-			num[i] = (int)(math.random() * 100)+ 1;
+			num[i] = (int)(Math.random() * 100)+ 1;
 		}
 	}
 	public static void printArray()
 	{
 		for (int numbers : num)
 		{
-			System.out.println(num + " ");
+			System.out.print(numbers + " ");
 		}
 	}
-	public static double getOdds()
+	public static String getOdds()
 	{
-		int odds = 0;
-		
-		for (int num : numbers)
+		String odds = "";
+		for (int numbers : num)
 		{
-			if((num % 2) == 1) odds ++;
+			if((numbers % 2) == 1)
+			{
+				odds += (numbers + " ");
+			}
 		}
 		return odds;
 	}
