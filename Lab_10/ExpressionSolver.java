@@ -1,36 +1,60 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
-public class AverageNumbers
+public class ExpressionSolver
 {
-	public static void main(String[]args)
+	public static void main(String[] args)
 	{
-		int [] numbers = new int[10];
-		Scanner kb = new Scanner(System.in); 
-		System.out.print("Enter 10 numbers:: ");
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Enter Equation with terms separated by spaces: ");
+		String expression = kb.nextLine();
+		ArrayList<String>equation = new ArrayList<>(Arrays.asList(expression.split(" ")));
+		System.out.println(expression);
+		System.out.println(equation);
 
-		for(int i = 0; i < numbers.length; i++)
-		{
-			numbers[i] = (int)((Math.random() * 100) + 1);
-		}
-		
-		System.out.println("Numbers...");
-		
-		for(int num : numbers)
-		{
-			System.out.println(num + " ");
-		}
-		
-		System.out.println("The average of the above numbers is... " + average(numbers));
+		doEquation(equation);
 	}
-		
-	public static double average(int[] newnum)
+
+	public static void doEquation(ArrayList<String> equation)
 	{
-		int sum = 0;
-		for (int num : newnum){
-			sum = sum + num;
+		int i = 0;
+		while (i < equation.size())
+		{
+			if ( equation.get(i).equals("*") || equation.get(i).equals("/"))
+			{	
+				if (equation.get(i).equals("*"))
+				{
+					equation.set(i,"" + (Integer.parseInt(equation.get(i-1))*Integer.parseInt(equation.get(i+1))));
+				}
+				else
+				{
+					equation.set(i,"" + (Integer.parseInt(equation.get(i-1))/Integer.parseInt(equation.get(i+1))));
+				}
+				equation.remove(i-1);
+				equation.remove(i);
+			}
+			else
+				i++;
 		}
-		return sum /10;
-		
-		
+		i = 0;
+		while (i < equation.size())
+		{
+			if ( equation.get(i).equals("+") || equation.get(i).equals("-"))
+			{	
+				if (equation.get(i).equals("+"))
+				{
+					equation.set(i,"" + (Integer.parseInt(equation.get(i-1))+Integer.parseInt(equation.get(i+1))));
+				}
+				else
+				{
+					equation.set(i,"" + (Integer.parseInt(equation.get(i-1))-Integer.parseInt(equation.get(i+1))));
+				}
+				equation.remove(i-1);
+				equation.remove(i);
+			}
+			else
+				i++;
+		}
+	System.out.println(equation);
 	}
-}	
-
+}
