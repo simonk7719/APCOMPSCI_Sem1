@@ -22,11 +22,11 @@ public class GameGun
 			System.out.print("Action: ");
 			String action = kb.next();
 			
-			if (action == "R" )
+			if (action.equalsIgnoreCase("r") )
 			{
 				reload();
 			}
-			if (action == "S" )
+			if (action.equalsIgnoreCase("s") )
 			{	
 				System.out.print(shoot());
 			}
