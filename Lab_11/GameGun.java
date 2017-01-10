@@ -43,7 +43,6 @@ public class GameGun
 	}
 	public static String shoot()
 	{
-		if (shotCount > 0)
 		if (shotCount >= 0)
 		{
 			clip[shotCount - 1] = "[]";
