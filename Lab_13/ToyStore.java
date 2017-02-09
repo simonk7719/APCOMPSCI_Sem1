@@ -5,6 +5,26 @@ public class ToyStore {
         loadToys(ts);
     }
 	
+    public void loadToys(String ts) {
+        ArrayList<String> toys = new ArrayList<>(Arrays.asList(ts.split(", ")));
+        for(int i=0; i<toys.size(); i+=2) {
+            String name = toys.get(i);
+            String type = toys.get(i+1);
+            Toy ty = this.getThatToy(name);
+            if(ty == null) {
+                if(type.equalsIgnoreCase("Car")) {
+                    toyList.add(new Car(name));
+                }
+                else if(type.equalsIgnoreCase("Action Figure")) {
+                    toyList.add(new AFigure(name));
+                }
+            }
+            else {
+                ty.setCount(ty.getCount() + 1);
+            }
+        }
+    }
+	
     public Toy getThatToy(String title) {
         for(Toy t : toyList) {
             if(t.getName().equals(title)) {
@@ -37,3 +57,17 @@ public class ToyStore {
             }
         }
         if(cars > figures) {
+            return "There are more Cars";
+        }
+        else if(figures > cars) {
+            return "There are more action figures";
+        }
+        else {
+            return "Same amount of action figures and cars";
+        }
+    }
+	
+    public String toString() {
+        return toyList + "";
+    }
+}
