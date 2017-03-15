@@ -10,7 +10,8 @@ public class Satellite
        locate.add(new GMC(3, 8));
 
         double[] home = {0, 0};
-
+	
+		
         String printout = "\n\n" +
                "==========================" + "\nStarting locations...";
 
