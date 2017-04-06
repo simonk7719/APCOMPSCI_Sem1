@@ -77,60 +77,21 @@ public String getResponse(String statement){
 	 * ========================================================= */
 	private int findKeyword(String statement, String goal, int startPos)
 	{
-		String phrase = statement.trim().toLowerCase();
-		goal = goal.toLowerCase();
-
-		int psn = phrase.indexOf(goal, startPos);
-		/* New String variable phrase = a more searchable version of statement.
-		 	-Use a combination of trim() and toLowerCase() modify statement.
-
-		   New int variable psn = the location of goal in phrase after
-		   startPos
-
-			-->Refinement: Make sure we find goal by itself, and not part
-			of another word ("no" vs no in "know"). if you find an occurrence
-			of goal, make sure before and after aren't letters.
-
-			As long as psn >= 0...
-				Check if psn > 0 - there is no need to check for before at the
-				beginning of the word
-					set before = the slot in phrase before psn */
-
-				//====>code here
-
-		while ( psn >= 0){
-			String before = " ", after = " ";
+		String phrase = statement.trim();
+		phrase = " " + phrase.toLowerCase() + " ";
 			
-			if (psn > 0)
-			{
-				before = phrase.substring(psn - 1, psn);
+		int psn = phrase.indexOf(goal, startPos);
+		
+		int before, after;
+			if (psn>=0){
+				before = psn-1;
+				after = psn+goal.length();
+		
+				if (phrase.substring(before, before+1).equals(" ") && phrase.substring(after, after+1).equals(" ")){
+					return psn - 1;
+				}	
 			}
-			if (psn + goal.length() < phrase.length())
-			{
-				after = phrase.substring(psn + goal.length(),
-										psn + goal.length() + 1);
-			}
-
-				/*check if you can fit goal into the rest of phrase - no need to
-				proceed otherwise
-					set after = the slot in phrase after psn + length of goal */
-
-				//=====> code here
-			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0)) && ((after.compareTo("a") < 0) || (after.compareTo("z") > 0)))
-			{
-				return psn;
-			}
-			psn = phrase.indexOf(goal, psn + 1);
-		}
-
-				/* if before and after are not letters (compare before to "a"
-					and after to "z")
-						--return psn
-
-				Otherwise, search for goal in phrase from psn + 1 forward */
-
 		return -1;
-
 	}
 
 	/** Override - this method is used if there are only 2 parameters...*/
