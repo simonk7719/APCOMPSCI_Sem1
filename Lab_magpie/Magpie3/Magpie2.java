@@ -9,8 +9,7 @@ public class Magpie2
 public String getResponse(String statement){
 	
 		String response = "";
-statement = statement.toLowerCase.trim();
-		if (statement.length() == 0;
+		if (statement.length() == 0)
 		{
 			response = "Say something, please.";
 		}
@@ -40,12 +39,9 @@ statement = statement.toLowerCase.trim();
 			response = "Is he a pretty dank teacher?";
 		}
 
-		else
-		{
-			response = getRandomResponse();
-		}
 		
-	}
+		
+	
 	// Responses which require transformations
 	else if (findKeyword(statement, "I want to", 0) >= 0)
 	{
@@ -60,17 +56,33 @@ statement = statement.toLowerCase.trim();
  	 int psn = findKeyword(statement, "you", 0);
 
 
- 	 if (psn >= 0
-  	      && findKeyword(statement, "me", psn) >= 0)
+		if (psn >= 0 && findKeyword(statement, "me", psn) >= 0)
+		{
+		response = transformYouMeStatement(statement);
+		}
+		else
+		{
+			response = getRandomResponse();
+		}
+	psn = findKeyword(statement, "i", 0);
+
+
+ 	 if (psn >= 0   && findKeyword(statement, "you", psn) >= 0)
   	{
-   	  response = transformYouMeStatement(statement);
+   	  response = transformIYoustatement(statement);
 	  }
  	 else
   	{
      	response = getRandomResponse();
  	 }
+	 
+	 
+
 	}
 	return response;
+	
+	
+}
 
 
 
@@ -89,7 +101,6 @@ statement.trim();
 		String restOfStatement = statement.substring(psn + 6);
 		return "What would it mean to " + restOfStatement + "?";
 	}
-}
 
 
 
@@ -108,25 +119,23 @@ private String transformYouMeStatement(String statement)
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
-}
 
 
-private String transformIYouStatement(String statement)
-{
-	statement = statement.trim();
-		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
+
+private String transformIYoustatement(String statement)
 		{
-			statement = statement.substring(0, statement.length() - 1);
+		   statement = statement.trim();
+		   String lastChar = statement.substring(statement.length() - 1, statement.length());
+		   if(lastChar.equals("."))
+		   {
+			    statement = statement.substring(0,statement.length()-1);
+		   }
+		   int psnofI = findKeyword(statement, "i");
+		   int psnofYou = findKeyword(statement, "you", psnofI+1);
+		   String restOfStatement = statement.substring(psnofI+1, psnofYou-1);
+		   return "Why do you " + restOfStatement + " me?";
 		}
-		
-		int psnOfI = findKeyword (statement, "i", 0);
-		int psnOfYou = findKeyword (statement, "me", psnOfYou + 1);
-		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfMe).trim();
-		return "Why do you" + restOfStatement + " me?";
-	}
-}
+
 	
 	private int findKeyword(String statement, String goal, int startPos)
 	{
@@ -176,5 +185,4 @@ private String transformIYouStatement(String statement)
 
 		return response;
 	}
-	t
 }

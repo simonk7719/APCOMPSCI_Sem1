@@ -39,39 +39,32 @@ public String getResponse(String statement){
 			response = "Is he a pretty dank teacher?";
 		}
 
-		else
-		{
-			response = getRandomResponse();
-		}
 		
-	}
-	// Responses which require transformations
-	else if (findKeyword(statement, "I want to", 0) >= 0)
+	
+	else if (findKeyword(statement, "i want to", 0) >= 0)
 	{
 	  response = transformIWantToStatement(statement);
 	}
 
 
-	else
+	else 
 	{
-	  // Look for a two word (you <something> me)
- 	 // pattern
- 	 int psn = findKeyword(statement, "you", 0);
+ 	int psn = findKeyword(statement, "you", 0);
 
 
- 	 if (psn >= 0
-  	      && findKeyword(statement, "me", psn) >= 0)
+ 	if (psn >= 0 && findKeyword(statement, "me", psn) >= 0)
   	{
    	  response = transformYouMeStatement(statement);
-	  }
- 	 else
-  	{
+	}
+ 	else
+	{
      	response = getRandomResponse();
- 	 }
+ 	}
+	
 	}
 	return response;
 
-
+}
 
 
 
@@ -88,20 +81,14 @@ private String transformIWantToStatement(String statement)
 		{
 			statement = statement.substring(0, statement.length() - 1);
 		}
-statement.trim();
-		int psn = findKeyword (statement, "i want to", 0);
-		String restOfStatement = statement.substring(psn + 6);
-		return "What would it mean to " + restOfStatement + "?";
-	}
+	statement.trim();
+	int psn = findKeyword (statement, "i want to", 0);
+	String restOfStatement = statement.substring(psn + 9);
+	return "What would it mean to " + restOfStatement + "?";
 }
 
 
-/**
-* Take a statement with "you <something> me" and transform it into
-* "What makes you think that I <something> you?"
-* @param statement the user statement, assumed to contain "you" followed by "me"
-* @return the transformed statement
-*/
+
 private String transformYouMeStatement(String statement)
 {
 	statement = statement.trim();
@@ -117,7 +104,7 @@ private String transformYouMeStatement(String statement)
 		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
-}
+
 
 
 	
@@ -168,5 +155,4 @@ private String transformYouMeStatement(String statement)
 
 		return response;
 	}
-	t
 }
