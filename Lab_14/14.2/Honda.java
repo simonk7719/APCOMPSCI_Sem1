@@ -1,6 +1,7 @@
 import java.util.*;
 public class Honda extends Car {
-	public Honda (double[] Pos){
-		this.move(Pos[0],Pos[1]);
+	public Honda (double[] pos){
+		super();
+		this.move(pos[0],pos[1]);
 	}
 }

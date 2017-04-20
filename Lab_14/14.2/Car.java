@@ -1,16 +1,23 @@
 import java.util.*;
 public abstract class Car implements Location{
-	private double[] loc;
 	private int ID;
+	private double x;
+	private double y;
 
 	public Car(){
+		x=0;
+		y=0;
 		ID = (int)(Math.random() * 1000000) + 100000;
 	}
-	public void move(double x, double y) {
-		loc = new double [] {x,y};
+	public void move(double p, double q) {
+		x +=p;
+		y +=q;
 	}
 	public double[] getLoc() {
-		return loc;
+		double[] Loc = new double[2];
+		Loc[0] = x;
+		Loc[1] = y;
+		return Loc;
 	}
 	public int getID() {
 		return ID;
