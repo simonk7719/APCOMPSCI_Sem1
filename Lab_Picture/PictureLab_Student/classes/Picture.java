@@ -118,9 +118,9 @@ public void negate()
     {
       for (Pixel pixelObj : rowArray)
       {
-        pixelObj.setRed(255-pixelObj.getRed);
-	pixelObj.setGreen(255- pixelObj.getGreen);
-	pixelObj.setBlue(255- pixelObj.getBlue);
+        pixelObj.setRed(255-pixelObj.getRed());
+		pixelObj.setGreen(255- pixelObj.getGreen());
+		pixelObj.setBlue(255- pixelObj.getBlue());
       }
     }
   }
@@ -145,9 +145,9 @@ public void fixUnderWater()
 	{
 		for(Pixel pixelObj:rowArray)
 	{
-		pixelObj.setRed(pixelObj.getRed());
-		pixelObj.setGreen(pixelObj.getGreen()-150);
-		pixelObj.setBlue(pixelObj.getBlue()-20);
+		pixelObj.setRed(pixelObj.getRed()+140);
+		pixelObj.setGreen(pixelObj.getGreen()-30);
+		pixelObj.setBlue(pixelObj.getBlue()+20);
 	}
 	}
 	}
@@ -185,7 +185,7 @@ Pixel[][] pixels = this.getPixels2D();
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][width - 1 - col];
-        leftPixel.setColor(leftPixel.getColor());
+        leftPixel.setColor(rightPixel.getColor());
       }
     } 
   }
@@ -206,21 +206,22 @@ Pixel[][] pixels = this.getPixels2D();
       }
     } 
   }
-public void mirrorHorizontalBotToTop
+public void mirrorHorizontalBotToTop()
 {
- Pixel[][] pixels = this.getPixels2D();
- Pixel leftPixel = null;
- Pixel rightPixel = null;
-      for (int col = 0; col < pixels[0].length; col++)
+Pixel[][] pixels = this.getPixels2D();
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int height = pixels.length;
+    for (int col = 0; col < pixels[0].length; col++)
+    {
+      for (int row= 0; row < height / 2; row++)
       {
-          for (int row = 0; row < pixels.length; row++)
-          {
-              leftPixel = pixels[row][col];
-              rightPixel = pixels[pixels.length - 1 - row][col];
-              leftPixel.setColor(rightPixel.getColor());
-          }
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[height - 1 - row][col];
+        topPixel.setColor(bottomPixel.getColor());
       }
-}
+    } 
+  }
 
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
@@ -250,16 +251,16 @@ System.out.println(count);
 
 public void mirrorArms()
 {
-	int mirrorPoint = 189;
+	int mirrorPoint = 199;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     
     // loop through the rows
-    for (int row = 160; row < mirrorPoint; row++)
+    for (int row = 164; row < mirrorPoint; row++)
     {
       // loop from 13 to just before the mirror point
-      for (int col = 100; col < 160; col++)
+      for (int col =100; col < 300; col++)
       {
         
         leftPixel = pixels[row][col];      
@@ -272,7 +273,7 @@ public void mirrorArms()
 
 public void mirrorGull()
 {
-	int mirrorPoint = 345;
+	int mirrorPoint = 350;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     Pixel[][] pixels = this.getPixels2D();

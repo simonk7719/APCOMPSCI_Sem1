@@ -25,7 +25,14 @@ public class PictureTester
     caterpillar.mirrorVertical();
     caterpillar.explore();
   }
-  
+    /** Method to test mirrorVertical */
+  public static void testMirrorHorizontal()
+  {
+    Picture wall = new Picture("wall.jpg");
+    wall.explore();
+    wall.mirrorHorizontal();
+    wall.explore();
+  }
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -50,7 +57,56 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+    public static void testFixUnderWater()
+  {
+    Picture water = new Picture("water.jpg");
+	water.explore();
+    water.fixUnderWater();
+    water.explore();
+  }
+     public static void testNegate()
+  {
+    Picture flower1 = new Picture("flower1.jpg");
+	flower1.explore();
+    flower1.negate();
+    flower1.explore();
+  }
   
+    public static void testGrayscale()
+  {
+    Picture monkey = new Picture("monkey.jpg");
+	monkey.explore();
+    monkey.grayscale();
+    monkey.explore();
+  }
+  public static void testMirrorArms()
+  {
+    Picture snowman = new Picture("snowman.jpg");
+	snowman.explore();
+    snowman.mirrorArms();
+    snowman.explore();
+  }
+  public static void testMirrorVerticalRightToLeft()
+  {
+    Picture wall = new Picture("wall.jpg");
+	wall.explore();
+    wall.mirrorVerticalRightToLeft();
+    wall.explore();
+  }
+    public static void testMirrorHorizontalBotToTop()
+  {
+    Picture wall = new Picture("wall.jpg");
+	wall.explore();
+    wall.mirrorHorizontalBotToTop();
+    wall.explore();
+  }
+  public static void testMirrorGull()
+  {
+    Picture seagull = new Picture("seagull.jpg");
+	seagull.explore();
+    seagull.mirrorGull();
+    seagull.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -58,17 +114,21 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    //testFixUnderwater();
+    //testFixUnderWater();
     //testMirrorVertical();
+	//testMirrorHorizontal();
+	//testMirrorVerticalRightToLeft();
+	//testMirrorHorizontal();
+	//testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
+    testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
