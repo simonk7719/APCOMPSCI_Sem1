@@ -381,6 +381,10 @@ public void mirrorGull()
 }
 }
   
+public void myCollage()
+{
+	
+}
   
   /* Main method for testing - each class in Java can have a main 
    * method 

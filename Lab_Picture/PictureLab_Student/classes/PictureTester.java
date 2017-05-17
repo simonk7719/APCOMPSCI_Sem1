@@ -86,6 +86,13 @@ public class PictureTester
     snowman.mirrorArms();
     snowman.explore();
   }
+  public static void testCopy2()
+  {
+	Picture snowman = new Picture("snowman.jpg");
+	snowman.explore();
+    snowman.copy2();
+    snowman.explore();
+  }
   public static void testMirrorVerticalRightToLeft()
   {
     Picture wall = new Picture("wall.jpg");
@@ -128,10 +135,11 @@ public class PictureTester
 	//testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+    //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
+	//testCopy2();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
