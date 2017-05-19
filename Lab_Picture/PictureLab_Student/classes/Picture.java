@@ -390,18 +390,14 @@ else
 }
   
 public void myCollage(){
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
-    Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    Picture m1 = new Picture("monkey.jpg");
+    Picture m2 = new Picture("monkey2.jpg");
+    Picture m3 = new Picture("monkey3.jpg");
+	this.copy(m1,0,0);
+    this.copy(m2,260,0);
+    this.copy(m3,890,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("myCollage.jpg");
   }
 
   public void edgeDetection(int edgeDist)

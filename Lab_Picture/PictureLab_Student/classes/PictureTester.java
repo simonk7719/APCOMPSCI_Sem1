@@ -49,6 +49,14 @@ public class PictureTester
     canvas.createCollage();
     canvas.explore();
   }
+  public static void testmyCollage()
+  {
+    Picture object = new Picture("1824x1364.jpg");
+	object.myCollage();
+    object.explore();
+  }
+  
+  
   
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
@@ -122,7 +130,7 @@ public class PictureTester
   }
   /** Main method for testing.  Every class can have a main
     * method in Java */
-  public static void main(String[] args)
+public static void main(String[] args)
   {
     // uncomment a call here to run a test
     // and comment out the ones you don't want
@@ -146,13 +154,14 @@ public class PictureTester
     //testCollage();
     //testCopy();
 	//testCopy2();
+	testmyCollage();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-  }
+}
 }
