@@ -346,7 +346,7 @@ public void mirrorGull()
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
-  public void edgeDetection(int edgeDist)
+  public void edgeDetection2(int edgeDist)
   {
     Pixel leftPixel = null;
 Pixel topPixel =null;
@@ -389,24 +389,54 @@ else
 }
 }
   
-public void myCollage()  { Picture flower1 = new Picture("flower1.jpg");    Picture flower2 = new Picture("flower2.jpg");
-Picture flower2 = new Picture("monkey.jpg");    this.copy(flower1,0,0);    this.copy(flower2,100,0);    this.copy(flower1,200,0);    Picture flowerNoBlue = new Picture(flower2);    flowerNoBlue.zeroBlue();    this.copy(flowerNoBlue,300,0);    this.copy(flower1,400,0);    this.copy(flower2,500,0);    this.mirrorVertical();
-	this.write("collage.jpg");  } 
-  
-  public void edgeDetection(int edgeDist)  { Pixel leftPixel = null;    Pixel rightPixel = null;    Pixel[][] pixels = this.getPixels2D();    Color rightColor = null;    for (int row = 0; row < pixels.length; row++)    { for (int col = 0;{   col < pixels[0].length-1; col++)leftPixel = pixels[row][col];rightPixel = pixels[row][col+1];rightColor = rightPixel.getColor();if (leftPixel.colorDistance(rightColor) >    edgeDist)  leftPixel.setColor(Color.BLACK);else  leftPixel.setColor(Color.WHITE);}
-}
+public void myCollage(){
+    Picture flower1 = new Picture("flower1.jpg");
+    Picture flower2 = new Picture("flower2.jpg");
+    this.copy(flower1,0,0);
+    this.copy(flower2,100,0);
+    this.copy(flower1,200,0);
+    Picture flowerNoBlue = new Picture(flower2);
+    flowerNoBlue.zeroBlue();
+    this.copy(flowerNoBlue,300,0);
+    this.copy(flower1,400,0);
+    this.copy(flower2,500,0);
+    this.mirrorVertical();
+    this.write("collage.jpg");
+  }
+
+  public void edgeDetection(int edgeDist)
+  {
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+    Color rightColor = null;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length-1; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][col+1];
+        rightColor = rightPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > edgeDist)
+          leftPixel.setColor(Color.BLACK);
+        else
+          leftPixel.setColor(Color.WHITE);
+      }
+    }
 }
 
+}
 
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
-  public static void main(String[] args) 
+/*   public static void main(String[] args) 
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();
-  }
+  } */
   
-} // this } is the end of class Picture, put all new methods before this
+ // this } is the end of class Picture, put all new methods before this

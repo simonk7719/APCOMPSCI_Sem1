@@ -57,6 +57,12 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("swan.jpg");
+    swan.edgeDetection2(10);
+    swan.explore();
+  }
     public static void testFixUnderWater()
   {
     Picture water = new Picture("water.jpg");
@@ -88,10 +94,10 @@ public class PictureTester
   }
   public static void testCopy2()
   {
-	Picture snowman = new Picture("snowman.jpg");
-	snowman.explore();
-    snowman.copy2();
-    snowman.explore();
+	 Picture beach = new Picture("seagull.jpg");
+	  beach.explore();
+	  beach.copy2(new Picture("swan.jpg"), 0, 0, 200, 200);
+	  beach.explore();
   }
   public static void testMirrorVerticalRightToLeft()
   {
@@ -141,7 +147,7 @@ public class PictureTester
     //testCopy();
 	//testCopy2();
     //testEdgeDetection();
-    //testEdgeDetection2();
+    testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
