@@ -9,6 +9,7 @@ public class Magpie2
 public String getResponse(String statement){
 	
 		String response = "";
+		int psn = 0;
 		if (statement.length() == 0)
 		{
 			response = "Say something, please.";
@@ -39,38 +40,23 @@ public String getResponse(String statement){
 			response = "Is he a pretty dank teacher?";
 		}
 
-		
-		
+		else if (findKeyword(statement, "I want to", 0) >= 0)
+		{
+		  response = transformIWantToStatement(statement);
+		}
+		else if (findKeyword(statement, "I", 0) >=0) {
+			psn = findKeyword(statement, "I", 0);
+			if (psn >= 0 && findKeyword(statement, "you", psn) >= 0) {
+				response = transformIYoustatement(statement);
+			}
+		}
+		else if (findKeyword(statement, "you") >= 0) {
+			psn = findKeyword(statement, "you", 0);
+			if (psn >= 0 && findKeyword(statement, "me", psn) >= 0) {
+				response = transformYouMeStatement(statement);
+  			}
+		}
 	
-	// Responses which require transformations
-	else if (findKeyword(statement, "I want to", 0) >= 0)
-	{
-	  response = transformIWantToStatement(statement);
-	}
-
-
-	else
-	{
-	  // Look for a two word (you <something> me)
- 	 // pattern
- 	 int psn = findKeyword(statement, "you", 0);
-
-
-		if (psn >= 0 && findKeyword(statement, "me", psn) >= 0)
-		{
-		response = transformYouMeStatement(statement);
-		}
-		else
-		{
-			response = getRandomResponse();
-		}
-	psn = findKeyword(statement, "i", 0);
-
-
- 	 if (psn >= 0   && findKeyword(statement, "you", psn) >= 0)
-  	{
-   	  response = transformIYoustatement(statement);
-	  }
  	 else
   	{
      	response = getRandomResponse();
@@ -78,7 +64,7 @@ public String getResponse(String statement){
 	 
 	 
 
-	}
+	
 	return response;
 	
 	
@@ -89,73 +75,58 @@ public String getResponse(String statement){
 
 
 
-private String transformIWantToStatement(String statement)
-{
-	String lastChar = statement.substring(statement.length() - 1); 
-	if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement.length() - 1);
-		}
-statement.trim();
-		int psn = findKeyword (statement, "i want to", 0);
-		String restOfStatement = statement.substring(psn + 6);
-		return "What would it mean to " + restOfStatement + "?";
+private String transformIWantToStatement(String statement) {
+  		statement = statement.trim();
+  		String lastChar = statement.substring(statement.length() - 1, statement.length());
+  		if(lastChar.equals(".") || lastChar.equals("!") || lastChar.equals("?")) {
+  			statement = statement.substring(0, statement.length() - 1);
+  		}
+  		int psn = findKeyword(statement, "I want to");
+  		String restOfStatement = statement.substring(psn + 1, statement.length());
+  		return "What would it mean to" + restOfStatement + "?";
 	}
-
-
-
-private String transformYouMeStatement(String statement)
-{
-	statement = statement.trim();
-		String lastChar = statement.substring(statement.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement.length() - 1);
-		}
-		
-		int psnOfYou = findKeyword (statement, "you", 0);
-		int psnOfMe = findKeyword (statement, "me", psnOfYou + 3);
-		
-		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
-		return "What makes you think that I " + restOfStatement + " you?";
+	private String transformYouMeStatement(String statement) {
+  		statement = statement.trim();
+  		String lastChar = statement.substring(statement.length() - 1, statement.length());
+  		if(lastChar.equals(".") || lastChar.equals("!") || lastChar.equals("?")) {
+  			statement = statement.substring(0, statement.length() - 1);
+  		}
+  		int psnOfYou = findKeyword(statement, "you");
+  		int psnOfMe = findKeyword(statement, "me", psnOfYou + 3);
+  		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe);
+   		return "What makes you think that I" + restOfStatement + "you?";
 	}
-
-
-
-private String transformIYoustatement(String statement)
-		{
-		   statement = statement.trim();
-		   String lastChar = statement.substring(statement.length() - 1, statement.length());
-		   if(lastChar.equals("."))
-		   {
-			    statement = statement.substring(0,statement.length()-1);
-		   }
-		   int psnofI = findKeyword(statement, "i");
-		   int psnofYou = findKeyword(statement, "you", psnofI+1);
-		   String restOfStatement = statement.substring(psnofI+1, psnofYou-1);
-		   return "Why do you " + restOfStatement + " me?";
-		}
-
-	
-	private int findKeyword(String statement, String goal, int startPos)
-	{
-		String phrase = statement.trim();
-		phrase = " " + phrase.toLowerCase() + " ";
-			
-		int psn = phrase.indexOf(goal, startPos);
-		
-		int before, after;
-			if (psn>=0){
-				before = psn-1;
-				after = psn+goal.length();
-		
-				if (phrase.substring(before, before+1).equals(" ") && phrase.substring(after, after+1).equals(" ")){
-					return psn - 1;
-				}	
+	private String transformIYoustatement(String statement) {
+  		statement = statement.trim();
+  		String lastChar = statement.substring(statement.length() - 1, statement.length());
+  		if(lastChar.equals(".") || lastChar.equals("!") || lastChar.equals("?")) {
+  			statement = statement.substring(0, statement.length() - 1);
+  		}
+  		int psnOfI = findKeyword(statement, "i");
+  		int psnOfYou1 = findKeyword(statement, "you", psnOfI + 1);
+  		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou1 - 1);
+   		return "Why do you " + restOfStatement + " me?";
+	}
+	private int findKeyword(String statement, String goal, int startPos) {
+		String phrase = statement.trim().toLowerCase();
+		goal = goal.toLowerCase();
+		int psn = phrase.indexOf(goal, startPos);;
+			while(psn >= 0) {
+				String before = " ", after = " ";
+				if(psn > 0) {
+					before = phrase.substring(psn - 1, psn);
+				}
+				if(goal.length() + psn < phrase.length()) {
+					after = phrase.substring(psn + goal.length(), psn + goal.length() + 1);
+				}
+				if(((before.compareTo("a") < 0) || (before.compareTo("z") > 0))
+					&& ((after.compareTo("a") < 0) || (after.compareTo("z") > 0))) {
+					return psn;
+				}
+				psn = phrase.indexOf(goal, psn + 1);
 			}
 		return -1;
 	}
-
 
 	
 	private int findKeyword(String statement, String goal)
