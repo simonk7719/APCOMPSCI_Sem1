@@ -35,8 +35,12 @@ public class Deck {
 		
 		for(int i=0; i< ranks.length; i++)
 	{
-		Card card = new Card(ranks[i], suits[i], values[i]);
-		cards.add(card);
+		for (String suit : suits)
+		{
+			Card card = new Card(ranks[i], suit, values[i]);
+			cards.add(card);
+		}
+		
 	}
 		shuffle();
 		size = cards.size();
@@ -97,7 +101,7 @@ public class Deck {
 		size--;
 		return cards.get(size);
 	}
-
+	}
 	/**
 	 * Generates and returns a string representation of this deck.
 	 * @return a string representation of this deck.
@@ -132,4 +136,5 @@ public class Deck {
 		rtn = rtn + "\n";
 		return rtn;
 	}
+
 }

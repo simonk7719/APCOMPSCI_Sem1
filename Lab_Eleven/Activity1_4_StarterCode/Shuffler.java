@@ -60,7 +60,7 @@ public class Shuffler {
 	k+=2;
 	}
 	k=1;
-	for (int j = divide; j< values.length)
+	for (int j = divide; j< values.length; j++)
 	{
 	shuffled[k] =values[j];
 	k+=2;
@@ -88,7 +88,7 @@ public class Shuffler {
 		{
 		int r = (int)(Math.random() * (p + 1));
 		int s = values[r];
-		values[j] = values[p];
+		values[r] = values[p];
 		values[p] = s;
 		}
 	}
